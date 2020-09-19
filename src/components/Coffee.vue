@@ -7,7 +7,7 @@
         <h5 class="card-title" >{{product.name}}</h5>
         <p class="card-text">Rp.{{product.price}}</p>
         <p class="card-text">Stock: {{product.stock}}</p>
-        <a href="#" class="btn btn-primary">Update Product</a>
+        <router-link :to="`/product/${product.id}`" class="btn btn-primary">Update Product</router-link>
         <button @click='deleteProduct(product.id)' class="btn btn-sm btn-outline-danger">Delete products</button>
       </div>
     </div>
