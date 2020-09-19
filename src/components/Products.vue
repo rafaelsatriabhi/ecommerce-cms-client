@@ -30,7 +30,7 @@ export default {
           }
         })
           .then(data => {
-            console.log(data)
+            this.$emit('fetchData')
           })
           .catch(err => {
             console.log(err)

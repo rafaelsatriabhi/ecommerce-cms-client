@@ -3,6 +3,7 @@
     <NavBar/>
     <h1>Selamat datang, {{name}} </h1>
     <Products
+    @fetchData='fetchData'
     :products="products"
     ></Products>
   </div>
@@ -34,20 +35,25 @@ export default {
       next('/login')
     }
   },
+  methods: {
+    fetchData () {
+      kobajaApi({
+        url: '/product',
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        }
+      })
+        .then(({ data }) => {
+          this.$store.dispatch('fetchDataProducts', data.products)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  },
   created () {
-    kobajaApi({
-      url: '/product',
-      method: 'GET',
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    })
-      .then(({ data }) => {
-        this.$store.dispatch('fetchDataProducts', data.products)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.fetchData()
   }
 }
 </script>

@@ -8,12 +8,12 @@
         <h5 class="card-title" >{{getProduct.name}}</h5>
         <p class="card-text">Rp. {{getProduct.price}}</p>
         <p class="card-text">Stock {{getProduct.stock}}</p>
-        <button @click='editProduct(product.id)' class="btn btn-sm btn-outline-danger">Delete products</button>
+        <button @click="uhhAkuTerpanggil" class="btn btn-sm btn-outline-danger">Pencet aku</button>
       </div>
     </div>
       <div class="col-sm py-4 border border-secondary">
         <h3>Update product</h3>
-        <form @submit="editProduct">
+        <form @submit.prevent="editProduct">
           <label for="product-name-input">Name</label>
           <input v-model="product.name" id="product-name-input" class="form-control" type="text" placeholder="Latina machine grinder">
           <label for="category">Choose Category:</label><br>
@@ -102,6 +102,27 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    delete (id) {
+    },
+    uhhAkuTerpanggil () {
+      const answer = window.confirm('Are you sure you want to delete this product?')
+      if (answer) {
+        kobajaApi({
+          url: `product/${this.$route.params.id}`,
+          method: 'DELETE',
+          headers: {
+            access_token: localStorage.getItem('access_token')
+          }
+        })
+          .then(data => {
+            window.confirm('Product has been deleted')
+            this.$router.push({ name: 'CategoryPage' })
+          })
+          .catch(_ => {
+            console.log('Error :(')
+          })
+      }
     }
   },
   beforeRouteLeave (to, from, next) {
