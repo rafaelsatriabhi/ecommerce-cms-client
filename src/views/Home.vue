@@ -20,6 +20,10 @@ export default {
   components: {
     NavBar, Products
   },
+  methods: {
+    incrementCoba () {
+    }
+  },
   computed: {
     name () {
       return this.$store.state.user.name
@@ -54,6 +58,7 @@ export default {
   },
   created () {
     this.fetchData()
+
   }
 }
 </script>

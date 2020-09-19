@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 import kobajaApi from '../api/kobajaApi'
 
 export default {
