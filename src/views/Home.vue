@@ -3,8 +3,6 @@
     <NavBar/>
     <h1>Selamat datang, {{name}} </h1>
     <Products
-    @fetchData='fetchData'
-    :products="products"
     ></Products>
   </div>
 </template>
@@ -12,7 +10,6 @@
 <script>
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
-import kobajaApi from '../api/kobajaApi'
 import Products from '../components/Products.vue'
 
 export default {
@@ -35,25 +32,9 @@ export default {
       next('/login')
     }
   },
-  methods: {
-    fetchData () {
-      kobajaApi({
-        url: '/product',
-        method: 'GET',
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        }
-      })
-        .then(({ data }) => {
-          this.$store.dispatch('fetchDataProducts', data.products)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-  },
   created () {
-    this.fetchData()
+    this.$store.dispatch('fetchUserName', localStorage.getItem('user_name'))
+    this.$store.dispatch('fetchDataProducts')
   }
 }
 </script>

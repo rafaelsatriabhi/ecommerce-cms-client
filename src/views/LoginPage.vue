@@ -16,6 +16,7 @@
             <div class="login-right-side">
                 <img src="../assets/img/spilled-coffee-mug.png" alt="">
                 <h1 class="text-logo">Welcome to Kobaja.id!</h1>
+                <h4 class="badge badge-danger text-wrap" style="width: 85px" >Admin</h4>
             </div>
         </div>
     </div>
@@ -45,13 +46,13 @@ export default {
         }
       })
         .then(({ data }) => {
-          console.log(data)
           localStorage.setItem('access_token', data.token)
+          localStorage.setItem('user_name', data.name)
+          this.$store.dispatch('fetchUserName', data.name)
           this.$router.push({ name: 'Home' })
         })
-        .catch((err) => {
-          console.log(err)
-          window.confirm(err)
+        .catch(() => {
+          window.confirm('Invalid email/password')
         })
     }
   }

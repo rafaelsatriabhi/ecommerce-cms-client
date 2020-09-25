@@ -11,8 +11,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content:space-around;
-    background-image: url("login-background.jpg");
-    height: 500px; /* You must set a specified height */
+    background-image: url("./img/login-background.jpg");
+    height: 100vh; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; 
@@ -38,6 +38,7 @@
 .text-logo{
     font-family: 'Caveat Brush', cursive;
 }
+
 
 .navbar-options{
 display: flex;
@@ -69,6 +70,11 @@ flex-direction: row;
     align-items: center;
 }
 
+.button-container{
+    display: flex;
+    flex-direction: row;
+}
+
 
 .home{
     display: flex;
@@ -78,6 +84,7 @@ flex-direction: row;
 .home .product-list-box{
     display: flex;
     flex-direction: row;
+    justify-content: initial;
     padding: 25px;
     flex-wrap: wrap;
 }

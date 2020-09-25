@@ -13,28 +13,19 @@
 </template>
 
 <script>
-import kobajaApi from '../api/kobajaApi'
 
 export default {
   name: 'Products',
-  props: ['products'],
+  computed: {
+    products () {
+      return this.$store.state.products
+    }
+  },
   methods: {
     deleteProduct (id) {
       const answer = window.confirm('Do you really want to delete this product?')
       if (answer) {
-        kobajaApi({
-          url: `/product/${id}`,
-          method: 'DELETE',
-          headers: {
-            access_token: localStorage.getItem('access_token')
-          }
-        })
-          .then(data => {
-            this.$emit('fetchData')
-          })
-          .catch(err => {
-            console.log(err)
-          })
+        this.$store.dispatch('deleteProduct', id)
       }
     }
   }

@@ -23,9 +23,13 @@ const routes = [
   },
   {
     path: '/category',
-    name: 'CategoryPage',
     component: CategoryPage,
     children: [
+      {
+        path: '',
+        name: 'CategoryPage',
+        component: ManualBrewers
+      },
       {
         path: 'manual-brewers',
         name: 'ManualBrewers',
@@ -38,7 +42,7 @@ const routes = [
       },
       {
         path: 'coffees',
-        name: 'ManualBrewers',
+        name: 'Coffees',
         component: Coffee
       }
     ]
