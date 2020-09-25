@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'http://localhost:3000/admin'
+  baseURL: 'https://e-commerce-kobaja.herokuapp.com/admin'
 })
